@@ -1,14 +1,8 @@
 // @flow
 import React from 'react';
-import styled from 'styled-components/native';
+import LoginPage from './pages/login';
 
 const App = () =>
-	<HelloWorld>My Grocery App</HelloWorld>;
+	<LoginPage />;
 
 export default App;
-
-const HelloWorld = styled.Text`
-	fontSize: 20;
-	fontWeight: bold;
-	margin: 30;
-`;
