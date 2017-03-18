@@ -1,8 +1,20 @@
 // @flow
 import React from 'react';
-import { FBLogin, FBLoginManager } from 'react-native-facebook-login';
+import withProps from 'recompose/withProps';
 
-const LoginPage = () =>
-	<FBLogin style={{ margin: 30 }} />;
+import LoginView from './LoginView';
 
-export default LoginPage;
+type Props = {
+	email: string,
+	password: string
+};
+
+const LoginPage = (props: Props) =>
+	<LoginView {...props} />;
+
+const enhance = withProps({
+	email: 'AlexanderFux83@gmail.com',
+	password: '123456'
+});
+
+export default enhance(LoginPage);

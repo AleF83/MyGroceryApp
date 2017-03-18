@@ -8,11 +8,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "firebase": "^3.7.2",
+    "firebase": "3.7.2",
     "react": "15.4.2",
     "react-native": "0.42.0",
-    "react-native-facebook-login": "^1.4.0",
-    "styled-components": "^1.4.4"
+    "react-native-facebook-login": "magus/react-native-facebook-login#19e2bfe",
+    "recompose": "0.22.0",
+    "styled-components": "1.4.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
