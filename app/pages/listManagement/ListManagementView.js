@@ -20,7 +20,7 @@ const ListManagementView = (props: Props) =>
 export default ListManagementView;
 
 const ContainerView = styled.View`
-	margin: 20;
+	margin: 60;
 `;
 
 const Header = styled.Text`

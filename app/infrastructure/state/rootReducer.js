@@ -1,12 +1,11 @@
 // @flow
 import { combineReducers } from 'redux';
+import login from '../../pages/login/state/loginReducer';
 
-//import navigationReducer from '../navigation/navigationReducer';
+const rootReducer = combineReducers({
+	login
+});
 
-/*const rootReducer = combineReducers({
-	//navigation: navigationReducer,
-//});
+export default rootReducer;
 
-export default rootReducer; */
-
-export default (state, action) => state;
+//export default (state, action) => state;

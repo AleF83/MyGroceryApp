@@ -1,17 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import mapProps from 'recompose/mapProps';
 
 import firebase from 'firebase';
 import firebaseApi from '../../infrastructure/firebase';
 
 import ProductListView from './ProductListView';
-
-type OriginalProps = {
-	payload: {
-		list: any
-	}
-};
 
 type Props = {
 	list: any
@@ -71,10 +64,4 @@ class  ProductListPage extends Component {
 	}
 }
 
-const propsMapper = (originalProps: OriginalProps): Props => ({
-	list: originalProps.payload.list
-});
-
-const enhance = mapProps(propsMapper);
-
-export default enhance(ProductListPage);
+export default ProductListPage;

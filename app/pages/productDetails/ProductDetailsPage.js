@@ -13,10 +13,4 @@ type Props = {
 const ProductDetailsPage = (props: Props) =>
 	<ProductDetailsView product={props.product} />;
 
-const propsMapper = (originalProps: OriginalProps): Props => ({
-	product: originalProps.payload.product
-});
-
-const enhance = mapProps(propsMapper);
-
-export default enhance(ProductDetailsPage);
+export default ProductDetailsPage;

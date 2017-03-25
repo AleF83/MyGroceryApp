@@ -1,17 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import mapProps from 'recompose/mapProps';
 
 import firebase from 'firebase';
 import firebaseApi from '../../infrastructure/firebase';
 
 import ListManagementView from './ListManagementView';
-
-type OriginalProps = {
-	payload: {
-		userUID: string
-	}
-}
 
 type Props = {
 	userUID: string
@@ -44,7 +37,7 @@ class ListManagementPage extends Component {
 		userListsRef.on('child_removed', this._childRemoved);
 	}
 
-	render() {
+	render(): void {
 		return <ListManagementView lists={this.state.lists} />;
 	}
 
@@ -60,10 +53,4 @@ class ListManagementPage extends Component {
 	}
 }
 
-const propsMapper = (originalProps: OriginalProps): Props => ({
-	userUID: originalProps.payload.userUID
-});
-
-const enhance = mapProps(propsMapper);
-
-export default enhance(ListManagementPage);
+export default ListManagementPage;
