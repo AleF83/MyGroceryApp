@@ -22,7 +22,7 @@ const ProductListItemView = (props: Props) =>
 	</ContainerView>;
 
 const enhance = withProps((props: OwnerProps): Props => ({
-	navigateToProductDetails: (product: any) => Actions[sceneNames.PRODUCT_DETAILS_PAGE]({ product })
+	navigateToProductDetails: (product: any) => () => Actions[sceneNames.PRODUCT_DETAILS_PAGE]({ product })
 }));
 
 export default enhance(ProductListItemView);

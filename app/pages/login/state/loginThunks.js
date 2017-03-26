@@ -12,7 +12,7 @@ export const login = (email: string, password: string): void => async (dispatch)
 	try {
 		const userUID = await firebaseApi.login(email, password);
 		dispatch(actions.loginSuccess(userUID));
-		Actions[sceneNames.LIST_MANAGEMENT_PAGE]({ userUID });
+		Actions[sceneNames.LIST_MANAGEMENT_PAGE]({ type: 'replace', userUID });
 	}
 	catch(error) {
 		console.warn('Error', error);
