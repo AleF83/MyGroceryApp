@@ -2,17 +2,17 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-type Props = {
-	product: {
-		name: string
-	}
+import * as model from '../../model/Types';
+
+type PropsType = {
+	product: model.ProductType
 };
 
-const ProductDetailsView = (props: Props) =>
+const ProductDetailsView = (props: PropsType): React.ComponentClass<PropsType> =>
 	<ProductName>{props.product.name}</ProductName>
 
 export default ProductDetailsView;
 
 const ProductName = styled.Text`
-	margin: 20;
+	margin: 80;
 `;

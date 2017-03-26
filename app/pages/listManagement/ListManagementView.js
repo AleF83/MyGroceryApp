@@ -2,18 +2,21 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import * as model from '../../model/Types';
+
 import ProductListListItemView from './ProductListListItemView';
 
-type Props = {
-	lists: Array<*>
+type PropsType = {
+	lists: Array<model.ProductListType>
 };
 
-const ListManagementView = (props: Props) => 
+const ListManagementView = (props: PropsType): React.ComponentClass<PropsType> => 
 	<ContainerView>
 		<Header>My Lists</Header>
 		{
-			props.lists.map(list =>
-				<ProductListListItemView key={list.key} list={list} />)
+			props.lists.map(
+				(list: model.ProductListType): React.ComponentClass<*> =>
+					<ProductListListItemView key={list.key} list={list} />)
 		}
 	</ContainerView>;
 

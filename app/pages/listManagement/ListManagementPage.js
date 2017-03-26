@@ -4,23 +4,25 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import firebaseApi from '../../infrastructure/firebase';
 
+import * as model from '../../model/Types';
+
 import ListManagementView from './ListManagementView';
 
-type Props = {
+type PropsType = {
 	userUID: string
 };
 
-type State = {
-	lists: Array<any>
+type StateType = {
+	lists: Array<model.ProductListType>
 };
 
 class ListManagementPage extends Component {
-	props: Props;
-	state: State;
+	props: PropsType;
+	state: StateType;
 
-	lists: Array<string>;
+	lists: Array<model.ProductListType>;
 
-	constructor(props: Props) {
+	constructor(props: PropsType) {
 		super(props);
 		this.lists = [];
 
@@ -45,7 +47,7 @@ class ListManagementPage extends Component {
 		firebaseApi.listRef(snap.key)
 					.once('value')
 					.then(data => ({...data.val(), key: snap.key}))
-					.then(list => { this.lists.push(list); this.setState({lists: this.lists}); });
+					.then((list: model.ProductListType) => { this.lists.push(list); this.setState({lists: this.lists}); });
 	}
 
 	_childRemoved(snap) {

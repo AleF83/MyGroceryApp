@@ -4,23 +4,25 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import firebaseApi from '../../infrastructure/firebase';
 
+import * as model from '../../model/Types';
+
 import ProductListView from './ProductListView';
 
-type Props = {
-	list: any
+type PropsType = {
+	list: model.ProductListType
 };
 
-type State = {
-	products: Array<*>
-}
+type StateType = {
+	products: Array<model.ProductType>
+};
 
 class  ProductListPage extends Component {
-	props: Props;
-	state: State;
+	props: PropsType;
+	state: StateType;
 
-	products: Array<*>;
+	products: Array<model.ProductType>;
 	
-	constructor(props: Props) {
+	constructor(props: PropsType) {
 		super(props);
 
 		this.products = [];
@@ -43,7 +45,7 @@ class  ProductListPage extends Component {
 		listProductsRef.on('child_changed', this._listProductsChildChanged);
 	}
 
-	render() {
+	render(): void {
 		return <ProductListView data={this.props.list}
 								products={this.state.products} />;
 	}
@@ -52,7 +54,7 @@ class  ProductListPage extends Component {
 		firebaseApi.productRef(snap.key)
 					.once('value')
 					.then(data => ({...data.val(), key: snap.key}))
-					.then(product => { this.products.push(product); this.setState({products: this.products}); });
+					.then((product: model.ProductType) => { this.products.push(product); this.setState({products: this.products}); });
 	}
 
 	_listProductsChildRemoved(snap) {

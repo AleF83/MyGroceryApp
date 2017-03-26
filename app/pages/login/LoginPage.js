@@ -7,14 +7,14 @@ import withProps from 'recompose/withProps';
 import { login } from './state/loginThunks';
 import LoginView from './LoginView';
 
-type Props = {
+type PropsType = {
 	email: string,
 	password: string,
 
 	onLogin: () => void
 };
 
-const LoginPage = (props: Props) =>
+const LoginPage = (props: PropsType): React.ComponentClass<PropsType> =>
 	<LoginView {...props} />;
 
 const mapDispatchToProps = (dispatch, ownerProps) => ({

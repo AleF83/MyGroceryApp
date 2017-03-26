@@ -6,15 +6,15 @@ import withProps from 'recompose/withProps';
 
 import * as sceneNames from '../../infrastructure/navigation/sceneNames';
 
+import * as model from '../../model/Types';
 
-type Props = {
-	product: {
-		name: string
-	},
-	navigateToProductDetails: (product: any) => () => void
-}
 
-const ProductListItemView = (props: Props) =>
+type PropsType = {
+	product: model.ProductType,
+	navigateToProductDetails: (product: model.ProductType) => () => void
+};
+
+const ProductListItemView = (props: PropsType): React.ComponentClass<PropsType> =>
 	<ContainerView>
 		<TouchContainer onPress={props.navigateToProductDetails(props.product)}>
 			<ProductName>{props.product.name}</ProductName>
@@ -22,7 +22,7 @@ const ProductListItemView = (props: Props) =>
 	</ContainerView>;
 
 const enhance = withProps((props: OwnerProps): Props => ({
-	navigateToProductDetails: (product: any) => () => Actions[sceneNames.PRODUCT_DETAILS_PAGE]({ product })
+	navigateToProductDetails: (product: model.ProductType) => () => Actions[sceneNames.PRODUCT_DETAILS_PAGE]({ product })
 }));
 
 export default enhance(ProductListItemView);
