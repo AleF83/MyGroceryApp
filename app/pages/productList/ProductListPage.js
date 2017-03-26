@@ -21,6 +21,7 @@ class  ProductListPage extends Component {
 	state: StateType;
 
 	products: Array<model.ProductType>;
+	listProductsRef: firebase.database.Reference;
 	
 	constructor(props: PropsType) {
 		super(props);
@@ -39,10 +40,16 @@ class  ProductListPage extends Component {
 	componentDidMount() {
 		const listRef: firebase.database.Reference = firebaseApi.listRef(this.props.list.key);
 
-		const listProductsRef: firebase.database.Reference = listRef.child('products');
-		listProductsRef.on('child_added', this._listProductsChildAdded);
-		listProductsRef.on('child_removed', this._listProductsChildRemoved);
-		listProductsRef.on('child_changed', this._listProductsChildChanged);
+		this.listProductsRef = listRef.child('products');
+		this.listProductsRef.on('child_added', this._listProductsChildAdded);
+		this.listProductsRef.on('child_removed', this._listProductsChildRemoved);
+		this.listProductsRef.on('child_changed', this._listProductsChildChanged);
+	}
+
+	componentWillUnmount() {
+		this.listProductsRef.off('child_added', this._listProductsChildAdded);
+		this.listProductsRef.off('child_removed', this._listProductsChildRemoved);
+		this.listProductsRef.off('child_changed', this._listProductsChildChanged);
 	}
 
 	render(): void {

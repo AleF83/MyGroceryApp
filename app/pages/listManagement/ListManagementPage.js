@@ -21,6 +21,7 @@ class ListManagementPage extends Component {
 	state: StateType;
 
 	lists: Array<model.ProductListType>;
+	userListsRef: firebase.database.Reference;
 
 	constructor(props: PropsType) {
 		super(props);
@@ -34,9 +35,14 @@ class ListManagementPage extends Component {
 	}
 
 	componentDidMount() {
-		const userListsRef: firebase.database.Reference = firebaseApi.userRef(this.props.userUID).child('lists');
-		userListsRef.on('child_added', this._childAdded);
-		userListsRef.on('child_removed', this._childRemoved);
+		this.userListsRef = firebaseApi.userRef(this.props.userUID).child('lists');
+		this.userListsRef.on('child_added', this._childAdded);
+		this.userListsRef.on('child_removed', this._childRemoved);
+	}
+
+	componentWillUnmount() {
+		this.userListsRef.off('child_added', this._childAdded);
+		this.userListsRef.off('child_removed', this._childRemoved);
 	}
 
 	render(): void {
