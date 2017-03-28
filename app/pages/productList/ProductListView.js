@@ -24,7 +24,7 @@ const ProductListView = (props: PropsType): React.ComponentClass<PropsType> =>
 export default ProductListView;
 
 const ContainerView = styled.View`
-	margin: 60;
+	marginTop: 60;
 `;
 
 const Title = styled.Text`

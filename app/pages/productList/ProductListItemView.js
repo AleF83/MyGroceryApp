@@ -8,6 +8,8 @@ import * as sceneNames from '../../infrastructure/navigation/sceneNames';
 
 import * as model from '../../model/Types';
 
+import CheckedCheckboxSvg from '../../svgs/CheckedCheckboxSvg';
+import UncheckedCheckboxSvg from '../../svgs/UncheckedCheckboxSvg';
 
 type PropsType = {
 	product: model.ProductType,
@@ -16,6 +18,9 @@ type PropsType = {
 
 const ProductListItemView = (props: PropsType): React.ComponentClass<PropsType> =>
 	<ContainerView>
+		<Checkbox onPress={() => {}}>
+			<CheckedCheckboxSvg width={48} height={48} />
+		</Checkbox>
 		<TouchContainer onPress={props.navigateToProductDetails(props.product)}>
 			<ProductName>{props.product.name}</ProductName>
 		</TouchContainer>
@@ -29,6 +34,11 @@ export default enhance(ProductListItemView);
 
 const ContainerView = styled.View`
 	flexDirection: row;
+	marginLeft: 10;
+	marginRight: 10;
+`;
+
+const Checkbox = styled.TouchableOpacity`
 `;
 
 const TouchContainer = styled.TouchableOpacity`

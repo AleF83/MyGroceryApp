@@ -1,8 +1,8 @@
 // @flow
 import * as actionTypes from './loginActionTypes';
-import type { LoginAction } from './loginActionCreators';
+import type { LoginActionType } from './loginActionCreators';
 
-type LoginState = {
+type LoginStateType = {
 	isLoggedIn: boolean,
 	email: string,
 	uid: string
@@ -14,7 +14,7 @@ const initialState = {
 	uid: null
 };
 
-const loginReducer = (state: LoginState = initialState, action: LoginAction): LoginSte => {
+const loginReducer = (state: LoginStateType = initialState, action: LoginActionType): LoginStateType => {
 	switch(action.type) {
 		case actionTypes.LOGIN_REQUEST :
 			return {
