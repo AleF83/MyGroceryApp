@@ -15,7 +15,6 @@ export const login = (email: string, password: string): void => async (dispatch)
 		Actions[sceneNames.LIST_MANAGEMENT_PAGE]({ type: 'replace', userUID });
 	}
 	catch(error) {
-		console.warn('Error', error);
-		dispatch(actions.loginFailure());
+		dispatch(actions.loginFailure(error.message));
 	}
 };

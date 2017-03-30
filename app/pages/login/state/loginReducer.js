@@ -5,13 +5,15 @@ import type { LoginActionType } from './loginActionCreators';
 type LoginStateType = {
 	isLoggedIn: boolean,
 	email: string,
-	uid: string
+	uid: string,
+	message: string
 };
 
 const initialState = {
 	isLoggedIn: false,
 	email: null,
-	uid: null
+	uid: null,
+	message: null
 };
 
 const loginReducer = (state: LoginStateType = initialState, action: LoginActionType): LoginStateType => {
@@ -32,7 +34,8 @@ const loginReducer = (state: LoginStateType = initialState, action: LoginActionT
 		case actionTypes.LOGIN_FAILURE :
 			return {
 				...state,
-				isLoggedIn: false
+				isLoggedIn: false,
+				message: action.message
 			};
 
 		default:

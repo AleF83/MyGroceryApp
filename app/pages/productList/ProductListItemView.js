@@ -19,7 +19,13 @@ type PropsType = {
 const ProductListItemView = (props: PropsType): React.ComponentClass<PropsType> =>
 	<ContainerView>
 		<Checkbox onPress={() => {}}>
-			<CheckedCheckboxSvg width={48} height={48} />
+			{
+				props.product.isInCart
+				?
+				<CheckedCheckboxSvg width={48} height={48} />
+				:
+				<UncheckedCheckboxSvg width={48} height={48} />
+			}
 		</Checkbox>
 		<TouchContainer onPress={props.navigateToProductDetails(props.product)}>
 			<ProductName>{props.product.name}</ProductName>

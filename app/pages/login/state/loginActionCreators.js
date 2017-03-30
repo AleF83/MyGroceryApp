@@ -4,7 +4,8 @@ import * as actionTypes from './loginActionTypes';
 export type LoginStateType = {
 	type: string,
 	email?: strin,
-	uid?: string
+	uid?: string,
+	message?: string
 };
 
 export const doLogin = (email: string): LoginStateType => ({ 
@@ -17,6 +18,7 @@ export const loginSuccess = (uid: string): LoginStateType => ({
 	uid
 });
 
-export const loginFailure = (): LoginStateType =>({ 
-	type: actionTypes.LOGIN_FAILURE 
+export const loginFailure = (message: string): LoginStateType =>({ 
+	type: actionTypes.LOGIN_FAILURE,
+	message
 });

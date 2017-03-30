@@ -1,15 +1,17 @@
 // @flow
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 import { FBLogin, FBLoginManager } from 'react-native-facebook-login';
 
-type Props = {
+type PropsType = {
 	email: string,
 	password: string,
+	message: string,
 	onLogin: () => void
 };
 
-const LoginView = (props: Props) =>
+const LoginView = (props: PropsType): React.ComponentClass<PropsType> =>
 	<ContainerView>
 		<Title>My Grocery App</Title>
 		<Email	autoCapitalize='none'
@@ -28,13 +30,20 @@ const LoginView = (props: Props) =>
 					secureTextEntry={true}
 					value={props.password}
 					onSubmitEditing={props.onLogin}/>
+		<Message>{props.message}</Message>
 		<LoginButton onPress={props.onLogin}>
 			<LoginButtonText>Log In</LoginButtonText>
 		</LoginButton>
 		<FBLogin style={{ margin: 30 }} />
 	</ContainerView>;
 
-export default LoginView;
+const mapStateToProps = state => ({
+	message: state.login.message
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(LoginView);
 
 const ContainerView = styled.View`
 	margin: 60;
@@ -81,4 +90,8 @@ const LoginButton = styled.TouchableOpacity`
 `
 
 const LoginButtonText = styled.Text`
+`;
+
+const Message = styled.Text`
+	color: red;
 `;
