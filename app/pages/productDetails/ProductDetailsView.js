@@ -26,7 +26,7 @@ const Name = styled.Text`
 	fontSize: 20;
 `;
 
-const Category = style.Text`
+const Category = styled.Text`
 `;
 
 const Remark = styled.Text`

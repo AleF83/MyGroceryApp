@@ -28,7 +28,12 @@ const ProductListItemView = (props: PropsType): React.ComponentClass<PropsType> 
 			}
 		</Checkbox>
 		<TouchContainer onPress={props.navigateToProductDetails(props.product)}>
-			<ProductName>{props.product.name}</ProductName>
+			<FirstRow>
+				<Name>{props.product.name}</Name>
+				<Quantity>{props.product.quantity}</Quantity>
+				<QuantityUnit>{props.product.quantityUnit}</QuantityUnit>
+			</FirstRow>
+			<Remark>{props.product.remark}</Remark>
 		</TouchContainer>
 	</ContainerView>;
 
@@ -48,7 +53,22 @@ const Checkbox = styled.TouchableOpacity`
 `;
 
 const TouchContainer = styled.TouchableOpacity`
+	flexDirection: column;
+`;
+
+const FirstRow = styled.View`
 	flexDirection: row;
-`
-const ProductName = styled.Text`
+`;
+
+const Name = styled.Text`
+`;
+
+const Quantity = styled.Text`
+`;
+
+const QuantityUnit = styled.Text`
+`;
+
+const Remark = styled.Text`
+	fontStyle: italic;
 `;

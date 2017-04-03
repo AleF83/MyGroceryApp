@@ -5,33 +5,25 @@ import { Actions } from 'react-native-router-flux';
 import withProps from 'recompose/withProps';
 
 import * as sceneNames from '../../infrastructure/navigation/sceneNames';
+import * as model from '../../model/Types';
 
-type OwnerProps = {
-	list: {
-		name: string
-	}
+type PropsType = {
+	list: model.ProductListType,
+	navigateToProductList: (list: model.ProductListType) => () => void
 };
 
-type Props = {
-	list: {
-		name: string
-	},
-	navigateToProductList: (list: any) => () => void
-};
-
-const ProductListListItemView = (props: Props) =>
+const ProductListCollectionItemView = (props: PropsType): React.ComponentClass<PropsType> =>
 	<ContainerView>
 		<TouchContainer onPress={props.navigateToProductList(props.list)}>
 			<ListName>{props.list.name}</ListName>
 		</TouchContainer>
 	</ContainerView>;
 
-
-const enhance = withProps((props: OwnerProps): Props => ({
-	navigateToProductList: (list: any) => () => Actions[sceneNames.PRODUCT_LIST_PAGE]({ list })
+const enhance = withProps((props): Props => ({
+	navigateToProductList: (list: model.ProductListType) => () => Actions[sceneNames.PRODUCT_LIST_PAGE]({ list })
 }));
 
-export default enhance(ProductListListItemView);
+export default enhance(ProductListCollectionItemView);
 
 const ContainerView = styled.View`
 	flexDirection: row;
@@ -39,7 +31,7 @@ const ContainerView = styled.View`
 
 const TouchContainer = styled.TouchableOpacity`
 	flexDirection: row;
-`
+`;
 
 const ListName = styled.Text`
 `;

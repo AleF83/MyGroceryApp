@@ -1,12 +1,14 @@
 // @flow
 import React, { Component } from 'react';
 
+import { View, Text} from 'react-native';
+
 import firebase from 'firebase';
 import firebaseApi from '../../infrastructure/firebase';
 
 import * as model from '../../model/Types';
 
-import ListManagementView from './ListManagementView';
+import ProductListCollectionView from './ProductListCollectionView';
 
 type PropsType = {
 	userUID: string
@@ -16,7 +18,7 @@ type StateType = {
 	lists: Array<model.ProductListType>
 };
 
-class ListManagementPage extends Component {
+class HomePage extends Component {
 	props: PropsType;
 	state: StateType;
 
@@ -46,7 +48,7 @@ class ListManagementPage extends Component {
 	}
 
 	render(): void {
-		return <ListManagementView lists={this.state.lists} />;
+		return <ProductListCollectionView lists={this.state.lists} />;
 	}
 
 	_childAdded(snap) {
@@ -61,4 +63,4 @@ class ListManagementPage extends Component {
 	}
 }
 
-export default ListManagementPage;
+export default HomePage;

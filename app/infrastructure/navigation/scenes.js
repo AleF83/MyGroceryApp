@@ -6,7 +6,7 @@ import * as sceneNames from './sceneNames';
 
 import WelcomePage from '../../pages/welcome';
 import LoginPage from '../../pages/login';
-import ListManagementPage from '../../pages/listManagement';
+import HomePage from '../../pages/home';
 import ProductListPage from '../../pages/productList';
 import ProductDetailsPage from '../../pages/productDetails';
 
@@ -20,8 +20,8 @@ const scenes = Actions.create(
 		<Scene	key={sceneNames.LOGIN_PAGE} 
 				component={LoginPage} />
 
-		<Scene	key={sceneNames.LIST_MANAGEMENT_PAGE} 
-				component={ListManagementPage} />
+		<Scene	key={sceneNames.HOME_PAGE} 
+				component={HomePage} />
 
 		<Scene	key={sceneNames.PRODUCT_LIST_PAGE} 
 				component={ProductListPage} />

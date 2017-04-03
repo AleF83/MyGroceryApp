@@ -4,14 +4,14 @@ import firebase from 'firebase';
 import type { FirebaseConfig } from './firebaseConfig';
 import config from './firebaseConfig';
 
-type FirebaseApi = {
+type FirebaseApiType = {
 
 };
 
 let app;
 let user;
 
-const firebaseApi: FirebaseApi = {
+const firebaseApi: FirebaseApiType = {
 	init: () => {
 		app = firebase.initializeApp(config);
 	},

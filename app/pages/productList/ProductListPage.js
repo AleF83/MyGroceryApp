@@ -13,23 +13,23 @@ type PropsType = {
 };
 
 type StateType = {
-	products: Array<model.ProductType>
+	products: any
 };
 
 class  ProductListPage extends Component {
 	props: PropsType;
 	state: StateType;
 
-	products: Array<model.ProductType>;
+	products: any;
 	listProductsRef: firebase.database.Reference;
 	
 	constructor(props: PropsType) {
 		super(props);
 
-		this.products = [];
+		this.products = {};
 
 		this.state = {
-			products: []
+			products: {}
 		};
 
 		this._listProductsChildAdded = this._listProductsChildAdded.bind(this);
@@ -53,7 +53,7 @@ class  ProductListPage extends Component {
 	}
 
 	render(): void {
-		return <ProductListView data={this.props.list}
+		return <ProductListView list={this.props.list}
 								products={this.state.products} />;
 	}
 
@@ -61,7 +61,13 @@ class  ProductListPage extends Component {
 		firebaseApi.productRef(snap.key)
 					.once('value')
 					.then(data => ({...data.val(), key: snap.key}))
-					.then((product: model.ProductType) => { this.products.push(product); this.setState({products: this.products}); });
+					.then((product: model.ProductType) => {
+						if(!this.products.hasOwnProperty(product.category)) {
+							this.products[product.category] = [];
+						}
+						this.products[product.category].push(product);
+						this.setState({products: this.products}); 
+					});
 	}
 
 	_listProductsChildRemoved(snap) {
