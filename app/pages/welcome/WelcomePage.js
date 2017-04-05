@@ -6,7 +6,7 @@ import withProps from 'recompose/withProps';
 import compose from 'recompose/compose';
 
 import * as sceneNames from '../../infrastructure/navigation/sceneNames';
-
+import {logOut} from '../login/state/loginThunks';
 import WelcomeView from './WelcomeView';
 
 type OwnerPropsType = {
@@ -17,14 +17,16 @@ type PropsType = {
 	isLoggedIn: boolean,
 	email: string,
 	navigateToHome: () => void,
-	navigateToLogin: () => void
+	navigateToLogin: () => void,
+	logOut: () => void
 };
 
 const WelcomePage = (props: PropsType): React.ComponentClass<PropsType> =>
 	<WelcomeView	isLoggedIn={props.isLoggedIn} 
 					email={props.email}
 					navigateToHome={props.navigateToHome(props.uid)}
-					navigateToLogin={props.navigateToLogin} />;
+					navigateToLogin={props.navigateToLogin}
+					logOut={props.logOut} />;
 
 const mapStateToProps = state => ({
 	isLoggedIn: state.login.isLoggedIn,
@@ -36,7 +38,8 @@ const enhance = compose(
 	connect(mapStateToProps),
 	withProps((props: OwnerProps): Props => ({
 		navigateToHome: (userUID) => () => Actions[sceneNames.HOME_PAGE]({userUID}),
-		navigateToLogin: Actions[sceneNames.LOGIN_PAGE]
+		navigateToLogin: Actions[sceneNames.LOGIN_PAGE],
+		logOut
 	}))
 );
 

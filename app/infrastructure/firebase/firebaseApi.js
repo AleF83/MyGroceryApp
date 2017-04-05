@@ -15,9 +15,13 @@ const firebaseApi: FirebaseApiType = {
 	init: () => {
 		app = firebase.initializeApp(config);
 	},
-	login: async (email: string, password: string): string => {
-		user = await firebase.auth().signInWithEmailAndPassword(email, password);
-		return user.uid;
+	login: async (email: string, password: string): Promise<string> => {
+		return await firebase.auth().signInWithEmailAndPassword(email, password)
+									.then((user: firebase.User): string => user.uid);
+	},
+
+	logout: async (): Promise<boolean> => {
+		return await firebase.auth().signOut().then((): boolean => true);
 	},
 
 	userRef: (userUID: string): firebase.database.Reference => 

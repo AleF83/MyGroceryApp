@@ -18,3 +18,17 @@ export const login = (email: string, password: string): void => async (dispatch)
 		dispatch(actions.loginFailure(error.message));
 	}
 };
+
+export const logOut = (): void => async (dispatch): void => {
+	dispatch(actions.doLogOut());
+	try {
+		const result = await firebaseApi.logOut();
+		if (result) {
+			dispatch(actions.logOutSuccess());
+			Actions[sceneNames.LOGIN_PAGE]();
+		}
+	}
+	catch(error) {
+		dispatch(actions.logOutFailure(error.message));
+	}
+};

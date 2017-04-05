@@ -22,3 +22,16 @@ export const loginFailure = (message: string): LoginStateType =>({
 	type: actionTypes.LOGIN_FAILURE,
 	message
 });
+
+export const doLogOut = (): LoginStateType => ({
+	type: actionTypes.LOGOUT_REQUEST
+});
+
+export const logOutSuccess = (): LoginStateType => ({ 
+	type: actionTypes.LOGOUT_SUCCESS
+});
+
+export const logOutFailure = (message: string): LoginStateType =>({ 
+	type: actionTypes.LOGOUT_FAILURE,
+	message
+});

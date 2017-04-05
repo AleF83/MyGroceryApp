@@ -6,7 +6,8 @@ type PropsType = {
 	isLoggedIn: boolean,
 	email: string,
 	navigateToHome: () => void,
-	navigateToLogin: () => void
+	navigateToLogin: () => void,
+	logOut: () => void
 };
 
 const WelcomeView = (props: PropsType): React.ComponentClass<PropsType> =>
@@ -19,6 +20,8 @@ const WelcomeView = (props: PropsType): React.ComponentClass<PropsType> =>
 				<UserName>{props.email}</UserName>
 				<GetStartedButton title="Get Started"
 									onPress={props.navigateToHome} />
+				<LogoutButton title="Log Out"
+								onPress={props.logOut} />
 			</LoggedInView>
 			:
 			<LoginButton	title="Login"
@@ -50,4 +53,7 @@ const GetStartedButton = styled.Button`
 
 const LoginButton = styled.Button`
 	marginTop: 50;
+`;
+
+const LogoutButton = styled.Button`
 `;
