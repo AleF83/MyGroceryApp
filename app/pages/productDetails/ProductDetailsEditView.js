@@ -26,14 +26,14 @@ const ContainerView = styled.View`
 	marginTop: 80;
 `;
 
-const Name = styled.Text`
+const Name = styled.TextInput`
 	fontSize: 20;
 `;
 
 const Category = styled.Text`
 `;
 
-const Remark = styled.Text`
+const Remark = styled.TextInput`
 	fontSize: 15;
 `;
 
@@ -41,7 +41,7 @@ const QuantityRow = styled.View`
 	flexDirection: row;
 `;
 
-const Quantity = styled.Text`
+const Quantity = styled.TextInput`
 `;
 
 const QuantityUnit = styled.Text`
