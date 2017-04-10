@@ -11,6 +11,8 @@ import * as model from '../../model/Types';
 import CheckedCheckboxSvg from '../../svgs/CheckedCheckboxSvg';
 import UncheckedCheckboxSvg from '../../svgs/UncheckedCheckboxSvg';
 
+const CheckboxSize: number = 36;
+
 type PropsType = {
 	product: model.ProductType,
 	navigateToProductDetails: (product: model.ProductType) => () => void
@@ -22,9 +24,9 @@ const ProductListItemView = (props: PropsType): React.ComponentClass<PropsType> 
 			{
 				props.product.isInCart
 				?
-				<CheckedCheckboxSvg width={48} height={48} />
+				<CheckedCheckboxSvg width={CheckboxSize} height={CheckboxSize} />
 				:
-				<UncheckedCheckboxSvg width={48} height={48} />
+				<UncheckedCheckboxSvg width={CheckboxSize} height={CheckboxSize} />
 			}
 		</Checkbox>
 		<TouchContainer onPress={props.navigateToProductDetails(props.product)}>
@@ -54,6 +56,8 @@ const Checkbox = styled.TouchableOpacity`
 
 const TouchContainer = styled.TouchableOpacity`
 	flexDirection: column;
+
+	marginTop: 3;
 `;
 
 const FirstRow = styled.View`
@@ -61,14 +65,20 @@ const FirstRow = styled.View`
 `;
 
 const Name = styled.Text`
+	fontSize: 16;
+	fontWeight: bold;
+	marginLeft: 4;
 `;
 
 const Quantity = styled.Text`
+	marginLeft: 2;
 `;
 
 const QuantityUnit = styled.Text`
+	marginLeft: 2;
 `;
 
 const Remark = styled.Text`
 	fontStyle: italic;
+	margin: 2;
 `;

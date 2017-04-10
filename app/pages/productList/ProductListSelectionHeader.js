@@ -6,9 +6,25 @@ type PropsType = {
 };
 
 const ProductListSelectionHeader = (props: PropsType): React.ComponentClass<PropsType> =>
-	<Name>{props.name}</Name>;
+	<ContainerView>
+		<Name>{props.name}</Name>
+	</ContainerView>;
 
 export default ProductListSelectionHeader;
 
+const ContainerView = styled.View`
+	flexDirection: row;
+	justifyContent: center;
+
+	margin: 5;
+
+	borderWidth: 1;
+	borderStyle: solid;
+	borderColor: black;
+`;
+
 const Name = styled.Text`
+	fontSize: 14;
+
+	
 `;
