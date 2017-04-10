@@ -6,6 +6,7 @@ type LoginStateType = {
 	isLoggedIn: boolean,
 	email: string,
 	uid: string,
+	token: string,
 	message: string
 };
 
@@ -13,6 +14,7 @@ const initialState = {
 	isLoggedIn: false,
 	email: null,
 	uid: null,
+	token: null,
 	message: null
 };
 
@@ -28,7 +30,8 @@ const loginReducer = (state: LoginStateType = initialState, action: LoginActionT
 			return {
 				...state,
 				isLoggedIn: true,
-				uid: action.uid
+				uid: action.uid,
+				token: action.token
 			};
 
 		case actionTypes.LOGIN_FAILURE :

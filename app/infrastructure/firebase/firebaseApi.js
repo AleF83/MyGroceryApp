@@ -9,15 +9,20 @@ type FirebaseApiType = {
 };
 
 let app;
-let user;
+let user: firebase.User;
 
 const firebaseApi: FirebaseApiType = {
 	init: () => {
 		app = firebase.initializeApp(config);
 	},
-	login: async (email: string, password: string): Promise<string> => {
-		return await firebase.auth().signInWithEmailAndPassword(email, password)
-									.then((user: firebase.User): string => user.uid);
+	login: async (email: string, password: string): Promise<firebase.User> => {
+		user = await firebase.auth().signInWithEmailAndPassword(email, password);
+		return user;
+	},
+
+	loginWithToken: async (token: string): Promise<firebase.User> => {
+		user = await firebase.auth().signInWithCustomToken(token);
+		return user;
 	},
 
 	logout: async (): Promise<boolean> => {

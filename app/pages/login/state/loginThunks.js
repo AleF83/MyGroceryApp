@@ -1,4 +1,5 @@
 // @flow
+import * as firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
 import * as sceneNames from '../../../infrastructure/navigation/sceneNames';
@@ -10,8 +11,20 @@ import * as actions from './loginActionCreators';
 export const login = (email: string, password: string): void => async (dispatch): void => {
 	dispatch(actions.doLogin(email));
 	try {
-		const userUID = await firebaseApi.login(email, password);
-		dispatch(actions.loginSuccess(userUID));
+		const user = await firebaseApi.login(email, password);
+		const token = await user.getToken();
+		dispatch(actions.loginSuccess(user.uid, token));
+		Actions[sceneNames.HOME_PAGE]({ type: 'replace', userUID: user.uid });
+	}
+	catch(error) {
+		dispatch(actions.loginFailure(error.message));
+	}
+};
+
+export const loginWithToken = (token: string): void => async (dispatch): void => {
+	try {
+		const user = await firebaseApi.loginWithToken(token);
+		dispatch(actions.loginSuccess(user.uuid, token));
 		Actions[sceneNames.HOME_PAGE]({ type: 'replace', userUID });
 	}
 	catch(error) {

@@ -31,6 +31,7 @@ const WelcomePage = (props: PropsType): React.ComponentClass<PropsType> =>
 const mapStateToProps = state => ({
 	isLoggedIn: state.login.isLoggedIn,
 	uid: state.login.uid,
+	token: state.login.token,
 	email: state.login.email
 });
 

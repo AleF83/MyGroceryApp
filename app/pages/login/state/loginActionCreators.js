@@ -5,6 +5,7 @@ export type LoginStateType = {
 	type: string,
 	email?: strin,
 	uid?: string,
+	token?: string,
 	message?: string
 };
 
@@ -13,9 +14,10 @@ export const doLogin = (email: string): LoginStateType => ({
 	email
 });
 
-export const loginSuccess = (uid: string): LoginStateType => ({ 
+export const loginSuccess = (uid: string, token: string): LoginStateType => ({ 
 	type: actionTypes.LOGIN_SUCCESS,
-	uid
+	uid,
+	token
 });
 
 export const loginFailure = (message: string): LoginStateType =>({ 
