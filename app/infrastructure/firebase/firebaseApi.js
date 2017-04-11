@@ -25,8 +25,9 @@ const firebaseApi: FirebaseApiType = {
 		return user;
 	},
 
-	logout: async (): Promise<boolean> => {
-		return await firebase.auth().signOut().then((): boolean => true);
+	logOut: async (): Promise<boolean> => {
+		await firebase.auth().signOut();
+		return true;
 	},
 
 	userRef: (userUID: string): firebase.database.Reference => 

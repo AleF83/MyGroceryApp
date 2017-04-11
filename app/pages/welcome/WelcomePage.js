@@ -35,12 +35,15 @@ const mapStateToProps = state => ({
 	email: state.login.email
 });
 
+const mapDispatchToProps = dispatch => ({
+	logOut: async () => dispatch(await logOut())
+});
+
 const enhance = compose(
-	connect(mapStateToProps),
+	connect(mapStateToProps, mapDispatchToProps),
 	withProps((props: OwnerProps): Props => ({
 		navigateToHome: (userUID) => () => Actions[sceneNames.HOME_PAGE]({userUID}),
-		navigateToLogin: Actions[sceneNames.LOGIN_PAGE],
-		logOut
+		navigateToLogin: Actions[sceneNames.LOGIN_PAGE]
 	}))
 );
 

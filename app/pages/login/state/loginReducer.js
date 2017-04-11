@@ -41,6 +41,24 @@ const loginReducer = (state: LoginStateType = initialState, action: LoginActionT
 				message: action.message
 			};
 
+		case actionTypes.LOGOUT_REQUEST :
+			return {
+				...state,
+				isLoggedIn: false,
+				email: null,
+				uid: null,
+				token: null
+			};
+
+		case actionTypes.LOGOUT_SUCCESS :
+			return state;
+
+		case actionTypes.LOGOUT_FAILURE :
+			return {
+				...state,
+				message: action.message
+			};
+
 		default:
 			return state;
 	}

@@ -42,4 +42,5 @@ const Header = styled.Text`
 `;
 
 const ProductLists = styled.ListView`
+	marginLeft: 5;
 `;
